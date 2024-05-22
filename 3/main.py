@@ -44,6 +44,6 @@ with tab2:
     #Datenausgabe Streamlit
     st.write(f"Mittelwert: {MWP:.2f}BPM, Maximum: {MaxP:.2f}BPM.")
     st.write(f"Zoneneinteilung: {Hrmax1:.2f}-{Hrmax2:.2f}BPM, {Hrmax2:.2f}-{Hrmax3:.2f}BPM, {Hrmax3:.2f}-{Hrmax4:.2f}BPM, {Hrmax4:.2f}-{Hrmax5:.2f}BPM und > {Hrmax5:.2f}BPM.")
-    st.write(f"Zeiten pro Zone {Time1:.2f}s, {Time2:.2f}s, {Time3:.2f}s, {Time4:.2f}s, {Time5:.2f}s.")
+    st.write(f"Zeiten pro Zone: {Time1:.2f}s, {Time2:.2f}s, {Time3:.2f}s, {Time4:.2f}s, {Time5:.2f}s.")
     st.write(f"Durchschnittliche Leistung pro Zone: {MeanPowerValuesZones[0]:.2f}, {MeanPowerValuesZones[1]:.2f}, {MeanPowerValuesZones[2]:.2f}, {MeanPowerValuesZones[3]:.2f}, {MeanPowerValuesZones[4]:.2f}")
 
