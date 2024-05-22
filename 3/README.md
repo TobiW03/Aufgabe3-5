@@ -1,4 +1,4 @@
-# VertiefungPandas
+# Interactive Power Plot
 ## Description
 The Interactive Power Plot is a project designed to read data, create a plot, and add some other features (listed below) to an application.
 ## Features
@@ -24,5 +24,3 @@ The Interactive Power Plot is a project designed to read data, create a plot, an
 5. You can now view your streamlit app in your browser.
 6. Input the wanted MAXHR in the provided input 
 ## Screenshots of the app
-[Screenshot1.png]
-[Screenshot2.png]
