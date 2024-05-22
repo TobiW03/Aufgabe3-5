@@ -25,7 +25,9 @@ def read_my_csv_Activity():
     # Einlesen eines Dataframes
     ## "\t" steht für das Trennzeichen in der txt-Datei (Tabulator anstelle von Beistrich)
     ## header = None: es gibt keine Überschriften in der txt-Datei
-    df = pd.read_csv("data/activities/activity.csv", sep=",", header=None)
+    
+    column_names = ["Duration","Distance","OriginalPace","HeartRate","Cadence","PowerOriginal","CalculatedPace","CalculatedStrideLength","CalculatedAerobicEfficiencyPace","CalculatedAerobicEfficiencyPower","CalculatedEfficiencyIndex"]
+    df = pd.read_csv("data/activities/activity.csv", sep=",", header=None,skiprows=1, usecols=range(11), names=column_names)
 
     # Setzt die Columnnames im Dataframe
     #df.columns = ["Messwerte in mV","Zeit in ms"]
@@ -35,5 +37,5 @@ def read_my_csv_Activity():
 
 #Test
 if __name__ == "__main__":
-    print("Hello World")
-    print(read_my_csv_Activity().head(5))
+    Activity = read_my_csv_Activity()
+    print(Activity['PowerOriginal'])
