@@ -42,9 +42,9 @@ def maths_activity(power):
 
 def HR_Zones(Heartrate):
     HR_Max = Heartrate.max(numeric_only=True)
-    HR_Zone1 = HR_Max * 0.2
-    HR_Zone2 = HR_Max * 0.4
-    HR_Zone3 = HR_Max * 0.6
+    HR_Zone1 = HR_Max * 0.5
+    HR_Zone2 = HR_Max * 0.6
+    HR_Zone3 = HR_Max * 0.7
     HR_Zone4 = HR_Max * 0.8
     HR_Zone5 = HR_Max * 1
     return HR_Zone1, HR_Zone2, HR_Zone3, HR_Zone4, HR_Zone5
@@ -67,6 +67,15 @@ def HR_Zones_Filter_Values(Heartrate):
     HR_Zone5_Filter = Heartrate[(Heartrate > HR_Zone4) & (Heartrate <= HR_Zone5)]
     return HR_Zone1_Filter, HR_Zone2_Filter, HR_Zone3_Filter, HR_Zone4_Filter, HR_Zone5_Filter
 
+def mean_HR_Zones_Values(Heartrate):
+    Values = HR_Zones_Filter_Values(Heartrate)
+    HR_Zone1_Mean = Values[0].mean(numeric_only=True)
+    HR_Zone2_Mean = Values[1].mean(numeric_only=True)
+    HR_Zone3_Mean = Values[2].mean(numeric_only=True)
+    HR_Zone4_Mean = Values[3].mean(numeric_only=True)
+    HR_Zone5_Mean = Values[4].mean(numeric_only=True)
+    return HR_Zone1_Mean, HR_Zone2_Mean, HR_Zone3_Mean, HR_Zone4_Mean, HR_Zone5_Mean
+
 def create_table(Activity,HRZonesFilters):
     df_test = pd.DataFrame({
     'Duration': Activity['Duration'],
@@ -81,8 +90,10 @@ def create_table(Activity,HRZonesFilters):
 
 
 
+
 #Test
 if __name__ == "__main__":
     Activity = read_my_csv_Activity()
     HRZonesFilters = HR_Zones_Filter(Activity['HeartRate'])
     df_table_Filters = create_table(Activity,HRZonesFilters)
+    Mean_Values_Zones = mean_HR_Zones_Values(Activity['HeartRate'])
