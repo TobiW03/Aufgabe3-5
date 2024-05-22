@@ -30,11 +30,5 @@ def make_plot(df):
     fig = px.line(df.head(2000), x= "Zeit in ms", y="Messwerte in mV")
     return fig
 
-#%% Test
-
-#df = read_my_csv()
-#fig = make_plot(df)
-
-#fig.show()
-
-# %%
+if __name__ == "__main__":
+    print("Hello World")
