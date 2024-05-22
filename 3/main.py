@@ -38,7 +38,7 @@ with tab2:
     #Zeit in den 5 Zonen
     Time1,Time2,Time3,Time4,Time5 = read_pandas.mean_time_Zone(read_pandas.create_table(read_pandas.read_my_csv_Activity(),
         read_pandas.HR_Zones_Filter((read_pandas.read_my_csv_Activity()['HeartRate']),HRInput)))
-    #Durchschnittliche Leistung pro Zohne
+    #Durchschnittliche Leistung pro Zone
     MeanPowerValuesZones = read_pandas.mean_Power_Zones_Values(read_pandas.create_table(read_pandas.read_my_csv_Activity(),
         read_pandas.HR_Zones_Filter((read_pandas.read_my_csv_Activity()['HeartRate']),HRInput)))
     #Datenausgabe Streamlit
