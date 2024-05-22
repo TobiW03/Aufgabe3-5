@@ -1,11 +1,6 @@
-# %%
-
 # Paket für Bearbeitung von Tabellen
 import pandas as pd
-
 # Paket
-## zuvor !pip install plotly
-## ggf. auch !pip install nbformat
 import plotly.express as px
 
 
@@ -21,14 +16,11 @@ def read_my_csv():
     # Gibt den geladen Dataframe zurück
     return df
 
-
-# %%
-
 def make_plot(df):
 
     # Erstellte einen Line Plot, der ersten 2000 Werte mit der Zeit aus der x-Achse
     fig = px.line(df.head(2000), x= "Zeit in ms", y="Messwerte in mV")
     return fig
-
+#Test
 if __name__ == "__main__":
     print("Hello World")
