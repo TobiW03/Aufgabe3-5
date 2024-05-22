@@ -25,4 +25,5 @@ The Interactive Power Plot is a project designed to read data, create a plot, an
 6. Input the wanted MAXHR in the provided input 
 ## Screenshots of the app
 ![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/0d3bc988-0968-40e5-9b8e-4d210ea84994)
+![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/941df740-6c07-4d66-97db-5d3bece225e0)
 
