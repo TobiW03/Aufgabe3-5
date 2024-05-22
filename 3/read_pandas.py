@@ -76,6 +76,30 @@ def mean_HR_Zones_Values(Heartrate):
     HR_Zone5_Mean = Values[4].mean(numeric_only=True)
     return HR_Zone1_Mean, HR_Zone2_Mean, HR_Zone3_Mean, HR_Zone4_Mean, HR_Zone5_Mean
 
+def mean_Power_Zones_Values(df):
+    dfZ1 = df[df["FilterHRZone1"] == True]
+    dfZ2 = df[df["FilterHRZone2"] == True]
+    dfZ3 = df[df["FilterHRZone3"] == True]
+    dfZ4 = df[df["FilterHRZone4"] == True]
+    dfZ5 = df[df["FilterHRZone5"] == True]
+    
+    # Berechne den Mittelwert der "PowerOriginal"-Spalte für jede gefilterte DataFrame
+    PowerMean_Zone1 = dfZ1["PowerOriginal"].mean()
+    PowerMean_Zone2 = dfZ2["PowerOriginal"].mean()
+    PowerMean_Zone3 = dfZ3["PowerOriginal"].mean()
+    PowerMean_Zone4 = dfZ4["PowerOriginal"].mean()
+    PowerMean_Zone5 = dfZ5["PowerOriginal"].mean()
+    return PowerMean_Zone1, PowerMean_Zone2, PowerMean_Zone3, PowerMean_Zone4, PowerMean_Zone5
+
+# ich möchte df
+    #df
+    # an der stelle wo
+    # df["Gender"]=="Female"
+
+
+
+
+
 def create_table(Activity,HRZonesFilters):
     df_test = pd.DataFrame({
     'Duration': Activity['Duration'],
@@ -97,3 +121,4 @@ if __name__ == "__main__":
     HRZonesFilters = HR_Zones_Filter(Activity['HeartRate'])
     df_table_Filters = create_table(Activity,HRZonesFilters)
     Mean_Values_Zones = mean_HR_Zones_Values(Activity['HeartRate'])
+    print(mean_Power_Zones_Values(df_table_Filters))
