@@ -41,7 +41,6 @@ def maths_activity(power):
     return power_mean, power_max
 
 def HR_Zones(Heartrate,HR_Max):
-    HR_Max = Heartrate.max(numeric_only=True)
     HR_Zone1 = HR_Max * 0.65
     HR_Zone2 = HR_Max * 0.75
     HR_Zone3 = HR_Max * 0.85
