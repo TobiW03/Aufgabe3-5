@@ -20,3 +20,9 @@ with tab1:
 
 with tab2:
     st.header("Power-Data")
+    st.write("# My Plot")
+
+    df = read_my_csv_EKG()
+    fig = make_plot(df)
+    
+    st.plotly_chart(fig)
