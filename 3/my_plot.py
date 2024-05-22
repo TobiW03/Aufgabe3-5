@@ -3,7 +3,7 @@ import numpy as np
 import plotly.express as px
 from read_pandas import read_my_csv_Activity
 
-if __name__ == "__main__":
+def PowerPlot():
     #Daten einlesen
     Activity = read_my_csv_Activity()
     #Time-Spalte erstellen
@@ -15,4 +15,4 @@ if __name__ == "__main__":
     #Plot erstellen
     fig = px.line(df, x="Time", y=["PowerOriginal", "HeartRate"])
     fig.update_layout(title='Power and HeartRate over Time', xaxis_title='Time in s', yaxis_title='Power in W, HeartRate in bpm')
-    fig.show()
+    return fig
