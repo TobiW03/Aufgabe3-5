@@ -40,35 +40,35 @@ def maths_activity(power):
     power_max = power.max(numeric_only=True)
     return power_mean, power_max
 
-def HR_Zones(Heartrate):
+def HR_Zones(Heartrate,HR_Max):
     HR_Max = Heartrate.max(numeric_only=True)
-    HR_Zone1 = HR_Max * 0.5
-    HR_Zone2 = HR_Max * 0.6
-    HR_Zone3 = HR_Max * 0.7
-    HR_Zone4 = HR_Max * 0.8
+    HR_Zone1 = HR_Max * 0.65
+    HR_Zone2 = HR_Max * 0.75
+    HR_Zone3 = HR_Max * 0.85
+    HR_Zone4 = HR_Max * 0.95
     HR_Zone5 = HR_Max * 1
     return HR_Zone1, HR_Zone2, HR_Zone3, HR_Zone4, HR_Zone5
 
-def HR_Zones_Filter(Heartrate):
-    HR_Zone1, HR_Zone2, HR_Zone3, HR_Zone4, HR_Zone5 = HR_Zones(Heartrate)
+def HR_Zones_Filter(Heartrate,HR_Max):
+    HR_Zone1, HR_Zone2, HR_Zone3, HR_Zone4, HR_Zone5 = HR_Zones(Heartrate,HR_Max)
     HR_Zone1_Filter = Heartrate <= HR_Zone1
     HR_Zone2_Filter = (Heartrate > HR_Zone1) & (Heartrate <= HR_Zone2)
     HR_Zone3_Filter = (Heartrate > HR_Zone2) & (Heartrate <= HR_Zone3)
     HR_Zone4_Filter = (Heartrate > HR_Zone3) & (Heartrate <= HR_Zone4)
-    HR_Zone5_Filter = (Heartrate > HR_Zone4) & (Heartrate <= HR_Zone5)
+    HR_Zone5_Filter = (Heartrate > HR_Zone4)
     return HR_Zone1_Filter, HR_Zone2_Filter, HR_Zone3_Filter, HR_Zone4_Filter, HR_Zone5_Filter
 
-def HR_Zones_Filter_Values(Heartrate):
-    HR_Zone1, HR_Zone2, HR_Zone3, HR_Zone4, HR_Zone5 = HR_Zones(Heartrate)
+def HR_Zones_Filter_Values(Heartrate,HR_Max):
+    HR_Zone1, HR_Zone2, HR_Zone3, HR_Zone4, HR_Zone5 = HR_Zones(Heartrate,HR_Max)
     HR_Zone1_Filter = Heartrate[Heartrate <= HR_Zone1]
     HR_Zone2_Filter = Heartrate[(Heartrate > HR_Zone1) & (Heartrate <= HR_Zone2)]
     HR_Zone3_Filter = Heartrate[(Heartrate > HR_Zone2) & (Heartrate <= HR_Zone3)]
     HR_Zone4_Filter = Heartrate[(Heartrate > HR_Zone3) & (Heartrate <= HR_Zone4)]
-    HR_Zone5_Filter = Heartrate[(Heartrate > HR_Zone4) & (Heartrate <= HR_Zone5)]
+    HR_Zone5_Filter = Heartrate[(Heartrate > HR_Zone4)]
     return HR_Zone1_Filter, HR_Zone2_Filter, HR_Zone3_Filter, HR_Zone4_Filter, HR_Zone5_Filter
 
-def mean_HR_Zones_Values(Heartrate):
-    Values = HR_Zones_Filter_Values(Heartrate)
+def mean_HR_Zones_Values(Heartrate,HR_Max):
+    Values = HR_Zones_Filter_Values(Heartrate,HR_Max)
     HR_Zone1_Mean = Values[0].mean(numeric_only=True)
     HR_Zone2_Mean = Values[1].mean(numeric_only=True)
     HR_Zone3_Mean = Values[2].mean(numeric_only=True)
@@ -91,14 +91,13 @@ def mean_Power_Zones_Values(df):
     PowerMean_Zone5 = dfZ5["PowerOriginal"].mean()
     return PowerMean_Zone1, PowerMean_Zone2, PowerMean_Zone3, PowerMean_Zone4, PowerMean_Zone5
 
-# ich möchte df
-    #df
-    # an der stelle wo
-    # df["Gender"]=="Female"
-
-
-
-
+def mean_time_Zone(df):
+    dfZ1 = df[df["FilterHRZone1"] == True]
+    dfZ2 = df[df["FilterHRZone2"] == True]
+    dfZ3 = df[df["FilterHRZone3"] == True]
+    dfZ4 = df[df["FilterHRZone4"] == True]
+    dfZ5 = df[df["FilterHRZone5"] == True]
+    return len(dfZ1), len(dfZ2), len(dfZ3), len(dfZ4), len(dfZ5)
 
 def create_table(Activity,HRZonesFilters):
     df_test = pd.DataFrame({
@@ -112,13 +111,12 @@ def create_table(Activity,HRZonesFilters):
     })
     return df_test
 
-
-
-
 #Test
 if __name__ == "__main__":
+    HRMAX = 193
     Activity = read_my_csv_Activity()
-    HRZonesFilters = HR_Zones_Filter(Activity['HeartRate'])
+    HRZonesFilters = HR_Zones_Filter(Activity['HeartRate'],HRMAX)
     df_table_Filters = create_table(Activity,HRZonesFilters)
-    Mean_Values_Zones = mean_HR_Zones_Values(Activity['HeartRate'])
-    print(mean_Power_Zones_Values(df_table_Filters))
+    Mean_HRValues_Zones = mean_HR_Zones_Values(Activity['HeartRate'],193)
+    MeanPowerValuesZones = mean_Power_Zones_Values(df_table_Filters)
+    MeanTimePerFilter = mean_time_Zone(df_table_Filters)
