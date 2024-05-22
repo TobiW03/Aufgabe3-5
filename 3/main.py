@@ -27,7 +27,9 @@ with tab2:
     st.plotly_chart(fig)
     
     st.header("Messwerte")
-    HRMAX = 193
+    #Standardwert
+    HRMAX = read_pandas.read_my_csv_Activity()['HeartRate'].max()
+    #Variabler WErt
     HRInput = st.number_input("Geben Sie einen Wert ein:", value=HRMAX)
     #Mittelwert & Maximalwert
     MWP,MaxP = read_pandas.maths_activity((read_pandas.read_my_csv_Activity()['PowerOriginal']))
