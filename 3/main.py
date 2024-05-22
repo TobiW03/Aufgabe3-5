@@ -1,5 +1,5 @@
 import streamlit as st
-from read_pandas import read_my_csv
+from read_pandas import read_my_csv_EKG
 from read_pandas import make_plot
 
 
@@ -13,7 +13,7 @@ with tab1:
     st.header("EKG-Data")
     st.write("# My Plot")
 
-    df = read_my_csv()
+    df = read_my_csv_EKG()
     fig = make_plot(df)
 
     st.plotly_chart(fig)
