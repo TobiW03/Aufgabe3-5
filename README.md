@@ -1,2 +1,2 @@
 # VertiefungPandas
-ProgrammierenVorlesung3
+Programmieren Vorlesungen Aufgaben 3-5 Schrottenbaum & Wannenmacher
