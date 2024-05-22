@@ -6,7 +6,8 @@ The Interactive Power Plot is a project designed to read data, create a plot, an
 - Creates a plot (my_plot.py).
 - Adds the plot to the application.
 - Enables an input to define the `MAXHR`.
-- Shows minimum and maximum heartrate, and defines five HR-zones, based on the input.
+- Shows minimum and maximum heartrate, and defines five `HR-zones`, based on the input.
+- Shows how much time is spent in each zone and the average power in each zone.
 ## How to Use
 1. Clone this repository to your local machine.
     ```bash
@@ -22,7 +23,7 @@ The Interactive Power Plot is a project designed to read data, create a plot, an
     streamlit run 3/main.py
     ```
 5. You can now view your streamlit app in your browser.
-6. Input the desired MAXHR in the provided input box. 
+6. Input the desired `MAXHR` in the provided input box. 
 ## Screenshot of the app
 ![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/0d3bc988-0968-40e5-9b8e-4d210ea84994)
 
