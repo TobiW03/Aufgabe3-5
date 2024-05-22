@@ -111,7 +111,14 @@ def create_table(Activity,HRZonesFilters):
     })
     return df_test
 
+def DatasActivity():
+    Activity = read_my_csv_Activity()
+    return Activity
 #Test
+
+
+
+
 if __name__ == "__main__":
     HRMAX = 193
     Activity = read_my_csv_Activity()
