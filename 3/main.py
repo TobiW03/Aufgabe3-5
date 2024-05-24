@@ -30,9 +30,10 @@ with tab2:
     st.header("Messwerte")
     #Standardwert
     HRMAX = read_pandas.read_my_csv_Activity()['HeartRate'].max()
-    #Variabler WErt
+    #Variabler Wert
     HRInput = st.number_input("Geben Sie einen Wert ein:", value=HRMAX)
     #Mittelwert & Maximalwert
+
     MWP,MaxP = read_pandas.maths_activity((read_pandas.read_my_csv_Activity()['PowerOriginal']))
     #5 Zonen HF
     Hrmax1,Hrmax2,Hrmax3,Hrmax4,Hrmax5 = read_pandas.HR_Zones((read_pandas.read_my_csv_Activity()['HeartRate']),HRInput)
