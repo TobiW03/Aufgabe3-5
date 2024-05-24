@@ -28,3 +28,6 @@ The Interactive Power Plot is a project designed to read data, create a plot, an
 ![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/0d3bc988-0968-40e5-9b8e-4d210ea84994)
 
 
+written with the help of chatgpt
+
+
