@@ -22,5 +22,3 @@ def PowerCurve(datas):
     #plt.xlim(0, len(datas["PowerOriginal"]))
     #plt.grid()
     return fig
-
-PowerCurve()
