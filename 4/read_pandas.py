@@ -1,10 +1,7 @@
-# %%
-
 # Paket für Bearbeitung von Tabellen
 import pandas as pd
 import scipy as sp
 import numpy as np
-import matplotlib.pyplot as plt
 
 def read_my_csv():
     # Einlesen eines Dataframes
@@ -51,8 +48,8 @@ def create_pow_curve(df,Intervals,fs):
     return dfPowerCurve
 
 if __name__ == "__main__":
-    datas = read_my_csv_Activity()
-    arr = np.arange(1, len(datas["PowerOriginal"]))
+    #datas = read_my_csv_Activity()
+    #arr = np.arange(1, len(datas["PowerOriginal"]))
     TablePower = create_pow_curve(datas,arr,1)
     plt.plot(TablePower['Zeit in s'],TablePower['Leistung in W'])
     plt.show()
