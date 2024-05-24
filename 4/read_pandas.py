@@ -46,18 +46,3 @@ def create_pow_curve(df,Intervals,fs):
         ListPowCurve.append([find_best_effort(df,element,fs),element])
     dfPowerCurve = pd.DataFrame(ListPowCurve, columns=['Leistung in W', 'Zeit in s'])
     return dfPowerCurve
-
-if __name__ == "__main__":
-    #datas = read_my_csv_Activity()
-    #arr = np.arange(1, len(datas["PowerOriginal"]))
-    TablePower = create_pow_curve(datas,arr,1)
-    plt.plot(TablePower['Zeit in s'],TablePower['Leistung in W'])
-    plt.show()
-
-    
-
-
-
-
-
-
