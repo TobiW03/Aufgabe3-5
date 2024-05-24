@@ -25,7 +25,6 @@ The Interactive Power Plot is a project designed to read data, create a plot, an
 5. You can now view your streamlit app in your browser.
 6. Input the desired `MAXHR` in the provided input box. 
 ## Screenshot of the app
-![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/08aa6e5e-cb8c-4617-a04b-774c6d32d8b6)
-
+![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/0d3bc988-0968-40e5-9b8e-4d210ea84994)
 
 
