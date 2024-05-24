@@ -1,9 +1,9 @@
 # Power Curve
 ## Description
-The 4th task was a small project which creates a powercurv by using a function which tells you the max avg. power over a duration in [s].
+The 4th task was a small project which creates a powercurve by using a function, which tells you the max avg. power over a duration in [s].
 ## Features
 - Reads data from `read_pandas.read_my_csv_Activity() ``
-- Creates 2 plots (my_plot.py).
+- Creates two plots (my_plot.py).
 - Adds the plot to the application.
 - Shows the PowerCurve log. and lin. on your localhost.
 ## How to Use
@@ -22,4 +22,5 @@ The 4th task was a small project which creates a powercurv by using a function w
     ```
 5. You can now view your streamlit app in your browser.
 ## Screenshot of the app
-![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/0d3bc988-0968-40e5-9b8e-4d210ea84994)
+![image](https://github.com/TobiW03/Aufgabe3-5/assets/163830822/de2f0655-067a-474f-b9c2-0fee65b62b28)
+
