@@ -3,9 +3,9 @@
 The 4th task was a small project which creates a powercurv by using a function which tells you the max avg. power over a duration in [s].
 ## Features
 - Reads data from `read_pandas.read_my_csv_Activity() ``
-- Creates a plot (my_plot.py).
+- Creates 2 plots (my_plot.py).
 - Adds the plot to the application.
-- Shows the PowerCurve on your localhost.
+- Shows the PowerCurve log. and lin. on your localhost.
 ## How to Use
 1. Clone this repository to your local machine.
     ```bash
