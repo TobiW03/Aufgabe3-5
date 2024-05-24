@@ -39,7 +39,7 @@ def read_my_csv_Activity():
     return df
 
 def find_best_effort(df,timeintv,fs): #fs = sampling frequency pro sekunde, timeintv = Zeitintervall in Sekunden
-    window_size = timeintv*fs
+    window_size = int(timeintv * (1/fs))
     rolling_avg = df["PowerOriginal"].rolling(window=(window_size)).mean()
     return rolling_avg.max()
 
