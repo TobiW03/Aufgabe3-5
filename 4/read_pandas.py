@@ -2,12 +2,9 @@
 
 # Paket für Bearbeitung von Tabellen
 import pandas as pd
-
-# Paket
-## zuvor !pip install plotly
-## ggf. auch !pip install nbformat
-import plotly.express as px
-
+import scipy as sp
+import numpy as np
+import matplotlib.pyplot as plt
 
 def read_my_csv():
     # Einlesen eines Dataframes
@@ -40,3 +37,28 @@ def read_my_csv_Activity():
     
     # Gibt den geladen Dataframe zurück
     return df
+
+def find_best_effort(df,timeintv,fs): #fs = sampling frequency pro sekunde, timeintv = Zeitintervall in Sekunden
+    window_size = timeintv*fs
+    rolling_avg = df["PowerOriginal"].rolling(window=(window_size)).mean()
+    return rolling_avg.max()
+
+def create_pow_curve(df,Intervals,fs):
+    ListPowCurve=[]
+    for element in Intervals:
+        ListPowCurve.append(find_best_effort(df,element,fs))
+    return ListPowCurve
+
+if __name__ == "__main__":
+    datas = read_my_csv_Activity()
+    arr = np.arange(1, len(datas["PowerOriginal"])) 
+    plt.plot(arr,(create_pow_curve(datas,arr,1)))
+    plt.show()
+
+    
+
+
+
+
+
+
