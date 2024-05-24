@@ -3,10 +3,6 @@ import read_pandas
 import my_plot
 import pandas as pd
 
-# Wo startet sie Zeitreihe
-# Wo endet sich
-# Was ist die Maximale und Minimale Spannung
-# Grafik
 tab1, tab2 = st.tabs(["EKG-Data", "Power-Data"])
 
 with tab1:
@@ -46,11 +42,11 @@ with tab2:
     #Datenausgabe Streamlit
     st.write(f"Mittelwert: {MWP:.2f}BPM, Maximum: {MaxP:.2f}BPM.")
     #Tabelle
-    datatabel = {
+    datatable = {
     'Spalte 1': [(str(round(Hrmax1,2)) + "-" + str(round(Hrmax2,2))), (str(round(Hrmax2,2)) + "-" + str(round(Hrmax3,2))), (str(round(Hrmax3,2)) + "-" + str(round(Hrmax4,2))), (str(round(Hrmax4,2)) + "-" + str(round(Hrmax5,2))), ("> " + str(round(Hrmax5,2)))],
     'Spalte 2': [round(Time1,2), round(Time2,2), round(Time3,2), round(Time4,2), round(Time5,2)],
     'Spalte 3': [round(MeanPowerValuesZones[0],2), round(MeanPowerValuesZones[1],2), round(MeanPowerValuesZones[2],2), round(MeanPowerValuesZones[3],2), round(MeanPowerValuesZones[4],2)],
     }
-    dftable = pd.DataFrame(datatabel)
+    dftable = pd.DataFrame(datatable)
     dftable.columns = ["Zoneneinteilung [BPM]", "Zeiten Pro Zone [s]", "Durchschnittliche Leistung pro Zone [W]"]
     st.table(dftable)
