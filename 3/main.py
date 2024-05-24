@@ -1,6 +1,7 @@
 import streamlit as st
 import read_pandas
 import my_plot
+import pandas as pd
 
 # Wo startet sie Zeitreihe
 # Wo endet sich
@@ -38,12 +39,17 @@ with tab2:
     #Zeit in den 5 Zonen
     Time1,Time2,Time3,Time4,Time5 = read_pandas.mean_time_Zone(read_pandas.create_table(read_pandas.read_my_csv_Activity(),
         read_pandas.HR_Zones_Filter((read_pandas.read_my_csv_Activity()['HeartRate']),HRInput)))
-    #Durchschnittliche Leistung pro Zone
+    #Durchschnittliche Leistung pro Zohne
     MeanPowerValuesZones = read_pandas.mean_Power_Zones_Values(read_pandas.create_table(read_pandas.read_my_csv_Activity(),
         read_pandas.HR_Zones_Filter((read_pandas.read_my_csv_Activity()['HeartRate']),HRInput)))
     #Datenausgabe Streamlit
     st.write(f"Mittelwert: {MWP:.2f}BPM, Maximum: {MaxP:.2f}BPM.")
-    st.write(f"Zoneneinteilung: {Hrmax1:.2f}-{Hrmax2:.2f}BPM, {Hrmax2:.2f}-{Hrmax3:.2f}BPM, {Hrmax3:.2f}-{Hrmax4:.2f}BPM, {Hrmax4:.2f}-{Hrmax5:.2f}BPM und > {Hrmax5:.2f}BPM.")
-    st.write(f"Zeiten pro Zone: {Time1:.2f}s, {Time2:.2f}s, {Time3:.2f}s, {Time4:.2f}s, {Time5:.2f}s.")
-    st.write(f"Durchschnittliche Leistung pro Zone: {MeanPowerValuesZones[0]:.2f}, {MeanPowerValuesZones[1]:.2f}, {MeanPowerValuesZones[2]:.2f}, {MeanPowerValuesZones[3]:.2f}, {MeanPowerValuesZones[4]:.2f}")
-
+    #Tabelle
+    datatabel = {
+    'Spalte 1': [(str(round(Hrmax1,2)) + "-" + str(round(Hrmax2,2))), (str(round(Hrmax2,2)) + "-" + str(round(Hrmax3,2))), (str(round(Hrmax3,2)) + "-" + str(round(Hrmax4,2))), (str(round(Hrmax4,2)) + "-" + str(round(Hrmax5,2))), ("> " + str(round(Hrmax5,2)))],
+    'Spalte 2': [round(Time1,2), round(Time2,2), round(Time3,2), round(Time4,2), round(Time5,2)],
+    'Spalte 3': [round(MeanPowerValuesZones[0],2), round(MeanPowerValuesZones[1],2), round(MeanPowerValuesZones[2],2), round(MeanPowerValuesZones[3],2), round(MeanPowerValuesZones[4],2)],
+    }
+    dftable = pd.DataFrame(datatabel)
+    dftable.columns = ["Zoneneinteilung [BPM]", "Zeiten Pro Zone [s]", "Durchschnittliche Leistung pro Zone [W]"]
+    st.table(dftable)
