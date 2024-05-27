@@ -1,9 +1,10 @@
 import json
+from datetime import datetime
 
 class Person:
     @staticmethod
     def load_person_data():
-        """A Function that knows where te person Database is and returns a Dictionary with the Persons"""
+        """A Function that knows where the person Database is and returns a Dictionary with the Persons"""
         file = open("data/person_db.json")
         person_data = json.load(file)
         return person_data
@@ -32,7 +33,6 @@ class Person:
         nachname = two_names[0]
 
         for eintrag in person_data:
-            print(eintrag)
             if (eintrag["lastname"] == nachname and eintrag["firstname"] == vorname):
                 print()
 
@@ -46,19 +46,29 @@ class Person:
         self.lastname = person_dict["lastname"]
         self.picture_path = person_dict["picture_path"]
         self.id = person_dict["id"]
-    
-    def calc_age():
-        pass
 
-    def calc_max_heart_rate():
-        pass
+    def calc_age(self):
+        date = datetime.now()
+        print(date)
+        currentyear = date.year
+        self.age = currentyear - self.date_of_birth
 
-    def load_by_id():
-        pass
+    def calc_max_heart_rate(self):
+        self.maxHR = 220-self.age
+
+    def load_by_id(self, ID):
+        if ID == self.id:
+            print(self.__dict__)
+        else:
+            print("Wrong ID, try again")
 
 if __name__ == "__main__":
     print("This is a module with some functions to read the person data")
     persons = Person.load_person_data()
     person_names = Person.get_person_list(persons)
     print(person_names)
-    print(Person.find_person_data_by_name("Huber, Julian"))
+    Person1 = Person(persons[0])
+    Person1.calc_age()
+    Person1.calc_max_heart_rate()
+    Person1.load_by_id(1)
+    #print(Person.find_person_data_by_name("Huber, Julian"))
