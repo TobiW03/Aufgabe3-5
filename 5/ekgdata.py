@@ -27,7 +27,7 @@ class EKGdata:
             
     def load_by_id(self, id):
         if id == self.id:
-            return self.df
+            print(self.__dict__)
         else:
             print("ID not found")
 
@@ -40,3 +40,4 @@ if __name__ == "__main__":
     ekg_dict = person_data[0]["ekg_tests"][0]
     print(ekg_dict)
     ekg = EKGdata(ekg_dict)
+    ekg.load_by_id(1)
