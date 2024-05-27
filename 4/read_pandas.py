@@ -2,6 +2,7 @@
 import pandas as pd
 import scipy as sp
 import numpy as np
+import plotly.express as px
 
 def read_my_csv():
     # Einlesen eines Dataframes
