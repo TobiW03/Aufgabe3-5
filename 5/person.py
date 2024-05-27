@@ -49,7 +49,6 @@ class Person:
 
     def calc_age(self):
         date = datetime.now()
-        print(date)
         currentyear = date.year
         self.age = currentyear - self.date_of_birth
 
