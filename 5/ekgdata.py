@@ -15,6 +15,18 @@ class EKGdata:
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
         self.df = pd.read_csv(self.data, sep='\t', header=None, names=['EKG in mV','Time in ms',])
+    
+    def find_peaks():
+        pass
+
+    def estimate_hr():
+        pass
+
+    def plot_time_series():
+        pass
+            
+    def load_by_id():
+        pass
 
 
 

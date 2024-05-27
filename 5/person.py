@@ -1,7 +1,6 @@
 import json
 
 class Person:
-    
     @staticmethod
     def load_person_data():
         """A Function that knows where te person Database is and returns a Dictionary with the Persons"""
@@ -47,6 +46,15 @@ class Person:
         self.lastname = person_dict["lastname"]
         self.picture_path = person_dict["picture_path"]
         self.id = person_dict["id"]
+    
+    def calc_age():
+        pass
+
+    def calc_max_heart_rate():
+        pass
+
+    def load_by_id():
+        pass
 
 if __name__ == "__main__":
     print("This is a module with some functions to read the person data")
