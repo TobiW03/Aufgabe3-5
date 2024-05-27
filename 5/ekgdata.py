@@ -4,6 +4,7 @@ from scipy.signal import find_peaks
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime
+import numpy as np
 
 # %% Objekt-Welt
 
@@ -33,20 +34,30 @@ class EKGdata:
             self.estimated_hr_list.append(difference)
         self.estimated_hr = sum(self.estimated_hr_list)/len(self.estimated_hr_list)
         return self.estimated_hr
-    
+
     def plot_time_series(self):
         self.fig = go.Figure()
+        
+        # Erstellen eines linspace von 0 bis zur Länge der Zeitdaten mit einem Abstand von 2ms
+        time_values_ms = np.arange(0, len(self.df['Time in ms']) * 2, 2)
+        
+        # Konvertieren der Zeitwerte von Millisekunden in Sekunden
+        time_values_s = time_values_ms / 1000
+        
         # EKG-Signal auf der linken y-Achse
-        self.fig.add_trace(go.Scatter(x=self.df['Time in ms'], y=self.df['EKG in mV'], mode='lines', name='EKG Signal', yaxis='y1'))
+        self.fig.add_trace(go.Scatter(x=time_values_s, y=self.df['EKG in mV'], mode='lines', name='EKG Signal', yaxis='y1'))
+        
         # Peaks auf der linken y-Achse
-        self.fig.add_trace(go.Scatter(x=self.df['Time in ms'][self.peaks], y=self.df['EKG in mV'][self.peaks], mode='markers', name='Peaks', marker=dict(color='red', size=10, symbol='x'), yaxis='y1'))
+        self.fig.add_trace(go.Scatter(x=time_values_s[self.peaks], y=self.df['EKG in mV'][self.peaks], mode='markers', name='Peaks', marker=dict(color='red', size=10, symbol='x'), yaxis='y1'))
+        
         # Geschätzte Herzfrequenz auf der rechten y-Achse
-        self.fig.add_trace(go.Scatter(x=self.df['Time in ms'][self.peaks], y=self.estimated_hr_list, mode='lines', name='Estimated Heartrate', yaxis='y2'))
+        self.fig.add_trace(go.Scatter(x=time_values_s[self.peaks], y=self.estimated_hr_list, mode='lines', name='Estimated Heartrate', yaxis='y2'))
+        
         # Layout anpassen
         self.fig.update_layout(
             title='Peaks im EKG-Signal',
             xaxis_title='Zeit [s]',
-            yaxis=dict(title='Amplitude', side='left', autorange=True),
+            yaxis=dict(title='Amplitude [mV]', side='left', autorange=True),
             yaxis2=dict(title='Herzfrequenz [bpm]', overlaying='y', side='right', autorange=True),
             showlegend=True
         )
