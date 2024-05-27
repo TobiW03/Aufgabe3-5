@@ -59,7 +59,7 @@ class Person:
         if ID == self.id:
             print(self.__dict__)
         else:
-            print("Wrong ID, try again")
+            print("ID not found")
 
 if __name__ == "__main__":
     print("This is a module with some functions to read the person data")
