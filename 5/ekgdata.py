@@ -18,15 +18,28 @@ class EKGdata:
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
         self.df = pd.read_csv(self.data, sep='\t', header=None, names=['EKG in mV','Time in ms',])
+        self.peaks,self.properties = self.find_peaks_ekg()
+        self.estimated_hr = self.estimate_hr()
+        self.fig = self.plot_time_series()
+
+    def find_peaks_ekg(self):
+        peaks, properties = find_peaks(self.df['EKG in mV'], height=340, distance=20)
+        return peaks,properties
     
-    def find_peaks(self):
-        self.peaks, self.properties = find_peaks(self.df['EKG in mV'], height=340, distance=20)
-
-    def estimate_hr():
+    def estimate_hr(self):
+        estimated_hr = ((len(self.peaks)) / (len(self.df['Time in ms'])/1000)*60)
+        return estimated_hr
+    
+    def plot_time_series(self):
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=self.df['Time in ms'], y=self.df['EKG in mV'], mode='lines', name='EKG Signal'))
+        fig.add_trace(go.Scatter(x=self.df['Time in ms'][self.peaks], y=self.df['EKG in mV'][self.peaks], mode='markers', name='Peaks', marker=dict(color='red', size=10, symbol='x')))
+        fig.update_layout(title='Peaks im EKG-Signal',
+            xaxis_title='Zeit [s]',
+            yaxis_title='Amplitude',
+            showlegend=True)
+        return fig
         
-
-    def plot_time_series():
-        pass
             
     def load_by_id(self, id):
         if id == self.id:
@@ -34,15 +47,6 @@ class EKGdata:
         else:
             print("ID not found")
 
-    def plot(self):
-        self.fig = go.Figure()
-        self.fig.add_trace(go.Scatter(x=self.df['Time in ms'], y=self.df['EKG in mV'], mode='lines', name='EKG Signal'))
-        self.fig.add_trace(go.Scatter(x=self.df['Time in ms'][self.peaks], y=self.df['EKG in mV'][self.peaks], mode='markers', name='Peaks', marker=dict(color='red', size=10, symbol='x')))
-        self.fig.update_layout(title='Peaks im EKG-Signal',
-            xaxis_title='Zeit [s]',
-            yaxis_title='Amplitude',
-            showlegend=True)
-        self.fig.show()
 
 
 
@@ -53,6 +57,7 @@ if __name__ == "__main__":
     ekg_dict = person_data[0]["ekg_tests"][0]
     #print(ekg_dict)
     ekg = EKGdata(ekg_dict)
-    ekg.load_by_id(1)
-    ekg.find_peaks()
-    ekg.plot()
+    #ekg.load_by_id(1)
+    #ekg.find_peaks()
+    #ekg.estimate_hr()
+    #ekg.plot_time_series()
