@@ -3,7 +3,6 @@ import pandas as pd
 from scipy.signal import find_peaks
 import plotly.express as px
 import plotly.graph_objects as go
-from person import Person
 from datetime import datetime
 
 # %% Objekt-Welt
@@ -51,20 +50,23 @@ class EKGdata:
             yaxis2=dict(title='Herzfrequenz [bpm]', overlaying='y', side='right', autorange=True),
             showlegend=True
         )
-        self.fig.show()
         return self.fig
-        
-    def load_by_id(self, id):
-        persons = Person.load_person_data()
-        for persons in person_data:
-            if persons["id"] == id:
+    
+    @staticmethod
+    def load_by_id(id, ekg_instances):
+        id_found = False
+        for ekg in ekg_instances:
+            if ekg.id == id:
                 print({
-                "id": self.id,
-                "date": datetime.now(),
-                "result_link": "data/ekg_data/01_Ruhe.txt"
+                    "id": ekg.id,
+                    "date": ekg.date,
+                    "result_link": ekg.data
                 })
-            else:
-                print("ID not found")
+                id_found = True
+                break
+        if not id_found:
+            print("ID not found")
+
 
 if __name__ == "__main__":
     print("This is a module with some functions to read the EKG data")
@@ -73,12 +75,16 @@ if __name__ == "__main__":
     ekg_dict1 = person_data[0]["ekg_tests"][0]
     ekg_dict2 = person_data[1]["ekg_tests"][0]
     ekg_dict3 = person_data[2]["ekg_tests"][0]
+
     ekg1 = EKGdata(ekg_dict1)
     ekg2 = EKGdata(ekg_dict2)
     ekg3 = EKGdata(ekg_dict3)
+
     #ekg.load_by_id(1)
     #ekg.find_peaks()
     #ekg.estimate_hr()
     #ekg.plot_time_series()
-    ekg1.load_by_id(1)
+
+    ekg_instances = [ekg1, ekg2, ekg3]
+    EKGdata.load_by_id(4, ekg_instances)
     

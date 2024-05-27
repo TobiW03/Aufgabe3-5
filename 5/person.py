@@ -46,19 +46,37 @@ class Person:
         self.lastname = person_dict["lastname"]
         self.picture_path = person_dict["picture_path"]
         self.id = person_dict["id"]
+        self.age = self.calc_age()
+        self.maxHR = self.calc_max_heart_rate()
+        self.ecg_data = person_dict["ekg_tests"]
+        self.ecg_result_link = person_dict["ekg_tests"][0]["result_link"]
 
     def calc_age(self):
         date = datetime.now()
         currentyear = date.year
-        self.age = currentyear - self.date_of_birth
+        age = currentyear - self.date_of_birth
+        return age
 
     def calc_max_heart_rate(self):
-        self.maxHR = 220-self.age
+        maxHR = 220-self.age
+        return maxHR
 
-    def load_by_id(self, ID):
-        if ID == self.id:
-            print(self.__dict__)
-        else:
+    @staticmethod
+    def load_by_id(id, personOBJ):
+        id_found = False
+        for person in personOBJ:
+            if person.id == id:
+                print({
+                    "id": person.id,
+                    "date_of_birth": person.date_of_birth,
+                    "first_name": person.firstname,
+                    "last_name": person.lastname,
+                    "picture_path": person.picture_path,
+                    "ekg_datei": person.ecg_result_link
+                })
+                id_found = True
+                break
+        if not id_found:
             print("ID not found")
 
 if __name__ == "__main__":
@@ -67,7 +85,8 @@ if __name__ == "__main__":
     person_names = Person.get_person_list(persons)
     print(person_names)
     Person1 = Person(persons[0])
-    Person1.calc_age()
-    Person1.calc_max_heart_rate()
-    Person1.load_by_id(1)
+    Person2 = Person(persons[1])
+    Person3 = Person(persons[2])
     #print(Person.find_person_data_by_name("Huber, Julian"))
+    person_instances = [Person1, Person2, Person3]
+    Person.load_by_id(3, person_instances)
