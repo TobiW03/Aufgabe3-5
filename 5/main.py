@@ -25,7 +25,7 @@ with tab1:
     # Design des Dashboards
     # Schreibe die Überschrift
     st.write("# EKG APP")
-    st.write("## Versuchsperson auswählen")
+    st.write("## Auswahl der Versuchsperson")
 
     # Auswahlbox, wenn Personen anzulegen sind
     st.session_state.aktuelle_versuchsperson = st.selectbox(
