@@ -65,7 +65,7 @@ with tab1:
     # Öffne EKG-Daten
     if 'current_person' in locals():
         if len(current_person.ecg_data) > 1:
-            option = st.radio("Wähle welches EKG: ", (1, 2))
+            option = st.radio("EKG auswählen: ", (1, 2))
             current_ekg = ekgdata.EKGdata(current_person.ecg_data[option-1])
         else:
             current_ekg = ekgdata.EKGdata(current_person.ecg_data[0])
