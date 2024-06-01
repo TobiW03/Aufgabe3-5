@@ -25,4 +25,4 @@ The dashboard integration is a project designed to read ekg-data, create a plot,
 6. Choose the patient on the first tab or enter an ID to the second tab 
 ## Screenshot of the app
 ![image](![alt text](image.png))
-![image](https://github.com/TobiW03/Aufgabe3-5/blob/01092b3624978cf34fef92ec5cbefc47c646f317/5/ScreenshotTab2.png)
+![image](![alt text](image-1.png))
